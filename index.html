@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TTS Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1 id="title"></h1>
+    <p id="intro"></p>
+  </header>
+
+  <main>
+    <div class="column">
+      <section class="redeems">
+        <h2>Redeems</h2>
+        <div id="redeems"></div>
+      </section>
+
+      <section class="voices">
+        <h2>Voices</h2>
+        <div id="voices"></div>
+      </section>
+    </div>
+
+    <div class="column">
+      <section class="tags">
+        <h2>Suggested Emotions and Sounds</h2>
+        <p class="hint">Click or drag into your message</p>
+        <div id="tags"></div>
+      </section>
+
+      <section class="message">
+        <h2>Message</h2>
+        <div class="message-info">
+          <span id="selected-voice"></span>
+          <span id="count"></span>
+        </div>
+        <textarea id="message" placeholder="Type your message here..."></textarea>
+        <button id="generate" class="primary">Generate</button>
+      </section>
+
+      <section class="output">
+        <h2>Output</h2>
+        <pre id="output"></pre>
+        <button id="copy" class="primary" disabled>Copy</button>
+      </section>
+    </div>
+  </main>
+
+  <footer class="credit">
+    Powered by <a href="https://bearnoby.com/bearnoby-tools/" target="_blank" rel="noopener">Bearnoby Tools</a>
+  </footer>
+
+  <template id="redeem-template">
+    <label class="redeem">
+      <input type="radio" name="redeem">
+      <span class="name"></span>
+    </label>
+  </template>
+
+  <template id="voice-template">
+    <label class="voice">
+      <input type="radio" name="voice">
+      <span class="name"></span>
+      <span class="description"></span>
+      <button class="play" type="button">▶</button>
+    </label>
+  </template>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

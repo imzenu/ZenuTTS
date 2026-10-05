@@ -1,0 +1,346 @@
+/* ===== Font files (in the fonts folder) ===== */
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(fonts/montserrat/montserrat-latin-ext-400-700.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(fonts/montserrat/montserrat-latin-400-700.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ===== Colors & fonts: change these to reskin the whole page ===== */
+
+:root {
+  /* Page */
+  --page-background: #14161c;         /* page background */
+  --title: #e8e8e8;                   /* site title */
+  --description: #959699;             /* site description under the title */
+
+  /* Boxes */
+  --box-background: #202227;          /* background of every box */
+  --box-border: #37393e;              /* box borders */
+  --section-label: #959699;           /* box headings and the tag hint */
+
+  /* Redeems and voices */
+  --option-text: #e8e8e8;             /* redeem and voice names */
+  --voice-description: #959699;       /* voice descriptions */
+  --redeem-background: #202227;       /* background of unselected redeems */
+  --redeem-text: #e8e8e8;             /* names of unselected redeems */
+  --option-border: #37393e;           /* outline of unselected redeems */
+  --selected-redeem-background: #abff94; /* background of the selected redeem */
+  --selected-redeem-text: #14161c;    /* name of the selected redeem */
+  --selected-background: #14161c;     /* background of the selected voice */
+  --selected-border: #abff94;         /* outline of the selected redeem/voice */
+
+  /* Message and output */
+  --input-background: #14161c;        /* message and output box background */
+  --input-border: #37393e;            /* message and output box border */
+  --input-text: #e8e8e8;              /* typed message and output text */
+  --placeholder: #959699;             /* placeholder text in the message and output boxes */
+  --selected-voice-name: #abff94;     /* selected voice name above the message */
+  --character-count: #959699;         /* characters-left count */
+  --character-count-over: #ff6b6b;    /* characters-left count when over the limit */
+
+  /* Buttons and tags */
+  --button-background: #abff94;       /* play, Generate, and Copy buttons */
+  --button-text: #14161c;             /* text on buttons */
+  --tag-background: #abff94;          /* suggested emotion/sound tags */
+  --tag-text: #14161c;                /* text on tags */
+
+  /* Fonts and shapes */
+  --font: "Montserrat", sans-serif;
+  --radius: 10px;
+
+  /* "Powered by" line at the bottom: follows the colors above */
+  --credit-text: var(--description);
+  --credit-link: var(--title);
+}
+
+
+/* ===== Page ===== */
+
+body {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  padding: 16px;
+  background: var(--page-background);
+  color: var(--option-text);
+  font-family: var(--font);
+}
+
+header {
+  margin-bottom: 16px;
+}
+
+h1 {
+  margin: 0;
+  color: var(--title);
+}
+
+#intro {
+  margin: 4px 0 0;
+  color: var(--description);
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--section-label);
+}
+
+section {
+  padding: 16px;
+  background: var(--box-background);
+  border: 1px solid var(--box-border);
+  border-radius: var(--radius);
+}
+
+
+/* ===== Layout: redeems and voices on the left, everything else on the right ===== */
+
+main {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+/* ===== Buttons ===== */
+
+button {
+  padding: 6px 14px;
+  background: var(--button-background);
+  color: var(--button-text);
+  border: none;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.primary {
+  display: block;
+  margin: 12px 0 0 auto;
+  padding: 8px 28px;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+
+/* ===== Redeems and voices: selectable rows ===== */
+
+.redeem,
+.voice {
+  display: block;
+  padding: 8px 10px;
+  color: var(--option-text);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.redeem:has(input:checked),
+.voice:has(input:checked) {
+  border-color: var(--selected-border);
+  background: var(--selected-background);
+}
+
+.redeem input,
+.voice input {
+  position: absolute;
+  opacity: 0;
+}
+
+.name {
+  font-weight: 600;
+}
+
+
+/* ===== Redeems: a row of pills that wraps if it runs out of room ===== */
+
+#redeems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.redeem {
+  padding: 6px 14px;
+  background: var(--redeem-background);
+  color: var(--redeem-text);
+  border-color: var(--option-border);
+  border-radius: 999px;
+}
+
+.redeem:has(input:checked) {
+  background: var(--selected-redeem-background);
+  color: var(--selected-redeem-text);
+}
+
+
+/* ===== Voices ===== */
+
+.voice {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 12px;
+  align-items: center;
+}
+
+.voice .description {
+  grid-column: 1;
+  color: var(--voice-description);
+  font-size: 13px;
+}
+
+/* Fixed font and size, so the button stays the same whatever --font is. */
+.voice .play {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40px;
+  height: 32px;
+  padding: 0;
+  font-family: "Segoe UI Symbol", "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1;
+}
+
+
+/* ===== Suggested emotions and sounds ===== */
+
+.tags:has(#tags:empty) {
+  display: none;
+}
+
+.hint {
+  margin: -8px 0 12px;
+  color: var(--section-label);
+  font-size: 13px;
+}
+
+#tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  cursor: grab;
+  background: var(--tag-background);
+  color: var(--tag-text);
+}
+
+
+/* ===== Message ===== */
+
+.message-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: var(--character-count);
+  font-size: 13px;
+}
+
+#selected-voice {
+  color: var(--selected-voice-name);
+  font-weight: 600;
+}
+
+#count.over {
+  color: var(--character-count-over);
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 140px;
+  padding: 12px;
+  background: var(--input-background);
+  color: var(--input-text);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+  font: inherit;
+}
+
+textarea::placeholder {
+  color: var(--placeholder);
+}
+
+
+/* ===== Output ===== */
+
+#output {
+  min-height: 1.5em;
+  margin: 0;
+  padding: 12px;
+  background: var(--input-background);
+  color: var(--input-text);
+  border: 1px dashed var(--input-border);
+  border-radius: var(--radius);
+  font: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+#output:empty::before {
+  content: "Your message will appear here";
+  color: var(--placeholder);
+}
+
+
+/* ===== "Powered by" line, centered at the bottom of the page ===== */
+
+.credit {
+  margin-top: auto;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--credit-text);
+}
+
+.credit a {
+  color: var(--credit-link);
+}
+
+
+/* ===== Phones: stack everything in one column ===== */
+
+@media (max-width: 800px) {
+  /* Extra room at the bottom so a host's corner badge doesn't cover the Copy button */
+  body {
+    padding-bottom: 72px;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
+}
