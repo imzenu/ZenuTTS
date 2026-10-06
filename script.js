@@ -165,6 +165,7 @@ function showPageText() {
 
 function start() {
   showPageText();
+  document.querySelector(".redeems").style.display = TTS_BUILDER.hideRedeems ? "none" : "";
 
   const redeemRows = TTS_BUILDER.redeems.map((redeem, index) => createRedeemRow(redeem, index === 0));
   document.getElementById("redeems").replaceChildren(...redeemRows);

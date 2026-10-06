@@ -2,6 +2,7 @@ var TTS_BUILDER = {
   "title": "Gooner TTS",
   "intro": "Make Gooner speak! Construct your TTS message here, then copy it to Zenu's Twitch chat and send it with the bits redeem/point redeem!",
   "maxChars": 500,
+  "hideRedeems": false,
   "redeems": [
     {
       "name": "TTS",
