@@ -83,6 +83,13 @@ var TTS_BUILDER = {
           "prefix": "[Tough] ",
           "sample": "samples/tough.mp3",
           "tags": []
+        },
+        {
+          "name": "Zenu",
+          "description": "Literally, Zenu's voice. The smartest rock around!",
+          "prefix": "[Zenu] ",
+          "sample": "samples/zenu.mp3",
+          "tags": []
         }
       ]
     },
@@ -164,6 +171,13 @@ var TTS_BUILDER = {
           "description": "",
           "prefix": "[Tough] ",
           "sample": "samples/tough.mp3",
+          "tags": []
+        },
+        {
+          "name": "Zenu",
+          "description": "Literally, Zenu's voice. The smartest rock around!",
+          "prefix": "[Zenu] ",
+          "sample": "samples/zenu.mp3",
           "tags": []
         }
       ]
